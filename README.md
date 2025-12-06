@@ -4,7 +4,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
 This project implements **LLM post-training using Reinforcement Learning (RL)**.  
 It consists of two major parts required by Assignment 5:
@@ -24,7 +24,7 @@ This README contains all instructions needed to build, run, and test the API.
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 assignment5-llm-posttraining/
@@ -47,25 +47,25 @@ assignment5-llm-posttraining/
 
 ---
 
-## 🚀 Running the API Locally (No Docker)
+## Running the API Locally (No Docker)
 
-### 1️⃣ Create virtual environment
+### Create virtual environment
 ```
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### 2️⃣ Install dependencies
+### Install dependencies
 ```
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Start the FastAPI server
+### Start the FastAPI server
 ```
 uvicorn app.main:app --reload --port 8000
 ```
 
-### 4️⃣ Test API
+### Test API
 **Health check**
 ```
 curl http://127.0.0.1:8000/
@@ -79,26 +79,26 @@ curl -X POST "http://127.0.0.1:8000/generate_with_llm"   -H "Content-Type: appli
       }'
 ```
 
-### 5️⃣ Swagger UI (Try‑it‑out mode)
+### Swagger UI (Try‑it‑out mode)
 Open in browser:
 
-👉 `http://127.0.0.1:8000/docs`
+`http://127.0.0.1:8000/docs`
 
 ---
 
-## 🐳 Running with Docker (Required for Grading)
+## Running with Docker (Required for Grading)
 
-### 1️⃣ Build image
+### Build image
 ```
 docker build -t assignment5-llm-api .
 ```
 
-### 2️⃣ Run container
+### Run container
 ```
 docker run --rm -p 8000:8000 assignment5-llm-api
 ```
 
-### 3️⃣ Test API (same commands as above)
+### Test API (same commands as above)
 ```
 curl http://127.0.0.1:8000/
 ```
@@ -109,7 +109,7 @@ curl -X POST "http://127.0.0.1:8000/generate_with_llm"   -H "Content-Type: appli
 
 ---
 
-## 🧠 Fine‑Tuning the Model (Optional Re‑Run)
+## Fine‑Tuning the Model (Optional Re‑Run)
 
 Your model is already fine‑tuned and stored under `models/fine_tuned_gpt2_format/`.
 
@@ -123,29 +123,29 @@ Outputs will be saved automatically into the `models/` directory.
 
 ---
 
-## 📄 Theory Answers
+## Theory Answers
 
 All answers to Part 2 are included in:
 
-✔ `theory_answers.md` (clean formatting, student tone)
+`theory_answers.md` (clean formatting, student tone)
 
 ---
 
-## ✅ Rubric Compliance Checklist (For Instructor)
+##  Rubric Compliance Checklist (For Instructor)
 
 | Requirement | Status |
 |------------|--------|
-| GitHub repo with new code | ✅ Completed |
-| Docker deployment runs FastAPI | ✅ Builds & runs |
-| API can be queried successfully | ✅ Curl verified |
-| Code is clean, organized, correct | ✅ Matches course architecture |
-| Theory questions answered | ✅ Included in `theory_answers.md` |
+| GitHub repo with new code | Completed |
+| Docker deployment runs FastAPI | Builds & runs |
+| API can be queried successfully | Curl verified |
+| Code is clean, organized, correct | Matches course architecture |
+| Theory questions answered | Included in `theory_answers.md` |
 
 The project fully meets all rubric expectations.
 
 ---
 
-## 🙌 Notes
+## Notes
 
 This assignment demonstrates:
 
@@ -155,11 +155,11 @@ This assignment demonstrates:
 - Proper Dockerization  
 - Clean, reproducible ML workflow  
 
-If any issues occur when running the API or Docker image, please ensure Python 3.11+ and Docker Desktop are updated.
+If any issues occur when running the API or Docker image, please ensure that Python 3.11+ and Docker Desktop are up to date.
 
 ---
 
-## 🎉 Submission Ready
+## Submission Ready
 
 This repository is ready for evaluation and meets all technical and theoretical requirements for Assignment 5.
 
