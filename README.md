@@ -124,10 +124,8 @@ Outputs will be saved automatically into the `models/` directory.
 ---
 
 ## Theory Answers
+All answers to Part 2 are included in: theory_answers.md
 
-All answers to Part 2 are included in:
-
-`theory_answers.md`
 ---
 
 ## Notes
@@ -140,6 +138,6 @@ This assignment demonstrates:
 - Proper Dockerization  
 - Clean, reproducible ML workflow  
 
-If any issues occur when running the API or Docker image, please ensure that Python 3.11+ and Docker Desktop are up to date.
+**If any issues occur when running the API or Docker image, please ensure that Python 3.11+ and Docker Desktop are up to date.**
 
 ---
