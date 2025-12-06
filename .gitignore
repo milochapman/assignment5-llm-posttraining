@@ -1,0 +1,15 @@
+# Virtual env
+.venv/
+__pycache__/
+*.pyc
+
+# Jupyter / cache
+.ipynb_checkpoints/
+.cache/
+logs/
+wandb/
+
+# Large model weights - DO NOT push to GitHub
+models/fine_tuned_gpt2_format/
+*.bin
+*.safetensors
