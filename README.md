@@ -79,14 +79,14 @@ curl -X POST "http://127.0.0.1:8000/generate_with_llm"   -H "Content-Type: appli
       }'
 ```
 
-### Swagger UI (Try‑it‑out mode)
+### Swagger UI
 Open in browser:
 
 `http://127.0.0.1:8000/docs`
 
 ---
 
-## Running with Docker (Required for Grading)
+## Running with Docker
 
 ### Build image
 ```
@@ -127,22 +127,7 @@ Outputs will be saved automatically into the `models/` directory.
 
 All answers to Part 2 are included in:
 
-`theory_answers.md` (clean formatting, student tone)
-
----
-
-##  Rubric Compliance Checklist (For Instructor)
-
-| Requirement | Status |
-|------------|--------|
-| GitHub repo with new code | Completed |
-| Docker deployment runs FastAPI | Builds & runs |
-| API can be queried successfully | Curl verified |
-| Code is clean, organized, correct | Matches course architecture |
-| Theory questions answered | Included in `theory_answers.md` |
-
-The project fully meets all rubric expectations.
-
+`theory_answers.md`
 ---
 
 ## Notes
@@ -158,8 +143,3 @@ This assignment demonstrates:
 If any issues occur when running the API or Docker image, please ensure that Python 3.11+ and Docker Desktop are up to date.
 
 ---
-
-## Submission Ready
-
-This repository is ready for evaluation and meets all technical and theoretical requirements for Assignment 5.
-
