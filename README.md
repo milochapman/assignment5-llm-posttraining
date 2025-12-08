@@ -1,143 +1,119 @@
 # Assignment 5 — LLM Post-Training with Reinforcement Learning  
-### Columbia University — Applied Analytics  
-### Author: Mingyuan Li  
+Columbia University — Applied Analytics  
+Author: Mingyuan Li  
 
 ---
 
-## Overview
+## 1. Project Overview
 
-This project implements **LLM post-training using Reinforcement Learning (RL)**.  
-It consists of two major parts required by Assignment 5:
+This project implements the requirements for **Assignment 5: Post-training an LLM**:
 
-1. **Post-training a GPT‑2 model** to follow a specific response format  
-2. **Answering reinforcement learning theoretical questions**  
+1. **Post-training a GPT-2 model** so that it follows a specific answer format.  
+2. **Implementing and exposing a text generation API** using FastAPI.  
+3. **Answering reinforcement learning theory questions** in a separate write-up.
 
-The final deliverable includes:
+At a high level:
 
-- A functioning **FastAPI server**
-- A **Dockerized deployment** runnable on instructor machines
-- A **fine‑tuned GPT‑2 model**
-- A clean, well‑organized repo
-- Theoretical answers (`theory_answers.md`)
-
-This README contains all instructions needed to build, run, and test the API.
+- The model side uses **GPT-2 (via Hugging Face Transformers)**, optionally fine-tuned on SQuAD.  
+- The serving side uses **FastAPI + Uvicorn**, wrapped in a **Docker** image so the instructor can run it easily.  
+- The RL theory part is documented in `theory_answers.md`.
 
 ---
 
-## Repository Structure
+## 2. Repository Structure
 
 ```
-assignment5-llm-posttraining/
-│
+.
+├── Dockerfile
+├── README.md
+├── requirements.txt
+├── theory_answers.md
 ├── app/
-│   ├── main.py                # FastAPI entrypoint
-│   ├── inference.py           # Model loading + generation logic
-│
-├── training/
-│   └── fine_tune_gpt2_squad.py  # GPT‑2 fine‑tuning script
-│
-├── models/                    # Fine‑tuned model folder (loaded at runtime)
-│
-├── theory_answers.md          # Reinforcement Learning theory answers
-├── requirements.txt           # Python dependencies for API
-├── Dockerfile                 # Docker deployment file
-├── README.md                  # This file
-└── .gitignore
+│   ├── __init__.py
+│   ├── main.py
+│   ├── inference.py
+│   └── schemas.py
+└── training/
+    └── fine_tune_gpt2_squad.py
 ```
 
 ---
 
-## Running the API Locally (No Docker)
+## 3. Run Locally (Python)
 
-### Create virtual environment
-```
-python3 -m venv .venv
+### 3.1 Create virtual environment
+
+```bash
+python -m venv .venv
 source .venv/bin/activate
 ```
 
-### Install dependencies
-```
+### 3.2 Install dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### Start the FastAPI server
-```
-uvicorn app.main:app --reload --port 8000
-```
+### 3.3 Start server
 
-### Test API
-**Health check**
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
-curl http://127.0.0.1:8000/
-```
-
-**Generate text**
-```
-curl -X POST "http://127.0.0.1:8000/generate_with_llm"   -H "Content-Type: application/json"   -d '{
-        "start_word": "What is reinforcement learning?",
-        "length": 60
-      }'
-```
-
-### Swagger UI
-Open in browser:
-
-`http://127.0.0.1:8000/docs`
 
 ---
 
-## Running with Docker
+## 4. Run with Docker
 
-### Build image
-```
+### 4.1 Build
+
+```bash
 docker build -t assignment5-llm-api .
 ```
 
-### Run container
-```
+### 4.2 Run
+
+```bash
 docker run --rm -p 8000:8000 assignment5-llm-api
 ```
 
-### Test API (same commands as above)
-```
+---
+
+## 5. API Usage
+
+### Health check
+
+```bash
 curl http://127.0.0.1:8000/
 ```
 
-```
-curl -X POST "http://127.0.0.1:8000/generate_with_llm"   -H "Content-Type: application/json"   -d '{"start_word": "Hello", "length": 40}'
+### Generate text
+
+```bash
+curl -X POST "http://127.0.0.1:8000/generate_with_llm"   -H "Content-Type: application/json"   -d '{"start_word": "What is reinforcement learning?", "length": 60}'
 ```
 
 ---
 
-## Fine‑Tuning the Model (Optional Re‑Run)
+## 6. Training Details
 
-Your model is already fine‑tuned and stored under `models/fine_tuned_gpt2_format/`.
-
-But if you ever want to rerun:
-
-```
-python training/fine_tune_gpt2_squad.py
-```
-
-Outputs will be saved automatically into the `models/` directory.
+- Base model: `openai-community/gpt2`
+- Optional fine-tune script: `training/fine_tune_gpt2_squad.py`
+- Attempts to load model from:
+  ```
+  models/fine_tuned_gpt2_format/
+  ```
+  Falls back to base GPT‑2 if not present.
 
 ---
 
-## Theory Answers
-All answers to Part 2 are included in: theory_answers.md
+## 7. RL Theory Answers
+
+See: `theory_answers.md`
 
 ---
 
-## Notes
+## 8. Notes
 
-This assignment demonstrates:
-
-- Practical LLM post‑training  
-- RL‑based behavior shaping  
-- Real‑world model deployment with FastAPI  
-- Proper Dockerization  
-- Clean, reproducible ML workflow  
-
-**If any issues occur when running the API or Docker image, please ensure that Python 3.11+ and Docker Desktop are up to date.**
-
----
+- Python version: 3.11  
+- Docker image: `python:3.11-slim`  
+- All dependencies pinned for reproducibility.
