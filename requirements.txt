@@ -1,5 +1,11 @@
-fastapi
-uvicorn[standard]
-transformers
-datasets
-torch
+fastapi==0.123.9
+uvicorn[standard]==0.38.0
+
+# Core ML stack
+torch==2.2.2
+transformers==4.36.2
+datasets==2.18.0
+numpy==1.26.4
+
+# Quality-of-life
+tqdm==4.67.1
